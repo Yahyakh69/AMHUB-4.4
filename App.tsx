@@ -74,6 +74,7 @@ const App: React.FC = () => {
   const [isListening, setIsListening] = useState(false);
   const [isAiProcessing, setIsAiProcessing] = useState(false);
 
+  // We keep this state for logic, but we no longer expose UI to change it
   const [selectedWorkflowName, setSelectedWorkflowName] = useState(WORKFLOW_OPTIONS[0].name);
 
   const [appSettings, setAppSettings] = useState<AppSettings>({
@@ -435,13 +436,6 @@ const App: React.FC = () => {
                       <div className="space-y-1">
                           <label className="text-[9px] uppercase text-slate-500 font-black tracking-widest">Mission ID</label>
                           <input type="text" value={requesterName} onChange={(e) => setRequesterName(e.target.value)} placeholder="Enter ID" className="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500" />
-                      </div>
-
-                      <div className="space-y-1 pt-1">
-                        <label className="text-[9px] uppercase text-slate-500 font-black tracking-widest">Selected Zone</label>
-                        <button className="w-full bg-cyan-600/20 border border-cyan-500/50 rounded py-2 text-[10px] font-black text-cyan-400 uppercase tracking-widest shadow-[0_0_10px_rgba(6,182,212,0.15)] cursor-default">
-                          Default DFR
-                        </button>
                       </div>
 
                       <button onClick={handleTrigger} disabled={status === ConnectionStatus.SENDING} className={`mt-2 w-full p-4 rounded-lg border font-black uppercase tracking-[0.3em] transition-all shadow-xl ${status === ConnectionStatus.SENDING ? 'bg-slate-800 border-slate-700 text-slate-600' : 'bg-gradient-to-b from-cyan-600 to-cyan-800 border-cyan-400 text-white hover:from-cyan-500 active:scale-[0.98]'}`}>
